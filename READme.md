@@ -361,7 +361,7 @@ int main()
     stdio_init_all();
     connect_to_wifi();
 
-    float data = 0;
+    int data = 0;
 
     while (true)
     {

@@ -8,7 +8,7 @@ int main()
     stdio_init_all();
     init_wifi();
 
-    float data = 0;
+    int data = 0;
 
     while (true)
     {
