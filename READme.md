@@ -80,7 +80,7 @@ app.listen(PORT, () => {
 Detalhes do que está acontecendo:
 - Teremos uma rota `/receber` que receberá os dados enviados pelo cliente (que é a plaquinha).
 - O JSON recebido vem no formato:
-    ```json
+    ```
     {
         "dado": <valor>
     }
@@ -186,7 +186,7 @@ Para relembrar,precisamos de:
 - `header`: Informações adicionais sobre a requisição (vamos fazer agora)
 
 já temos tudo, então vamos organizar:
-```c
+```
    char request[512];
    snprintf(request, sizeof(request),
              "%s %s HTTP/1.1\r\n"
@@ -198,7 +198,7 @@ já temos tudo, então vamos organizar:
              type_method, path, SERVER_IP, strlen(request_body), request_body);
 ```
  A função `snprintf` é usada novamente para formatar a requisição. Para ficar mais visual, estamos organizando assim:
-```json
+```
         POST /receber HTTP/1.1
         Host: 192.168.0.107
         Content-Type: application/json
