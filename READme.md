@@ -14,11 +14,18 @@ Neste projeto, você aprenderá a configurar o Wi-Fi no Raspberry Pi Pico W e co
     - 3.1 [Importando as bibliotecas](#31-importando-as-bibliotecas)
     - 3.2 [Inicializando a conexão Wi-Fi](#32-inicializando-a-conexão-wi-fi)
     - 3.3 [Organizando a conexão e os dados](#33-organizando-a-conexão-e-os-dados)
-- [ 4) Configurando a conexão TCP/IP](#4-configurando-a-conexão-tcpip)
+- [ 4) ⚙️ Configurando a conexão TCP/IP](#4-configurando-a-conexão-tcpip)
     - 4.1 [Estabelecendo a conexão](#41-estabelecendo-a-conexão)
     - 4.2 [Empacotando os dados](#42-empacotando-os-dados)
     - 4.3 [Enviando os dados](#43-enviando-os-dados)
-
+ 
+# Fazendo clone
+Caso queira apenas um setup inicial, faça o clone desse repositório:
+```bash
+git clone https://github.com/alexsousadev/wifi-init
+```
+# Explicação
+Caso queira entender a lógica, venha por aqui...
 ## 1) Reunindo o Setup Inicial
 
 ### 1.1 Pegando o arquivo lwipopts
@@ -153,7 +160,7 @@ void init_wifi()
 ### 3.3) Organizando a conexão e os dados
 Agora que já temos a conexão com a internet, precisamos definir para onde vamos conectar. Para isso, vamos definir as variáveis para o endereço IP, porta e caminho do local onde vamos enviar os dados (nesse caso, é tudo do nosso PC Local):
 ```c
-#define SERVER_IP "192.x.x.x"    // Troque pro seu ip 
+#define SERVER_IP "192.x.x.x"    // Troque por seu ip 
 #define SERVER_PORT 3000        // Troque por sua porta
 #define SERVER_PATH "/receber" // Troque por sua rota
 ```
@@ -179,7 +186,7 @@ Depois, vamos organizar a estrutura da requisição. Primeiro, formatando o JSON
 Por enquanto, temos o `body`, mas precisamos de um `header` também. É o que vamos fazer agora! (Caso esteja perdido, pesquise um pouco sobre a [estrutura de uma requisição HTTP](https://mazer.dev/pt-br/http/introducao-protocolo-http/)
 
 
-Para relembrar,precisamos de:
+Para relembrar, precisamos de:
 - `method`: Método de requisição (o `type_method`)
 - `path`: Caminho da requisição (a `SERVER_PATH`)
 - `body`: Corpo da requisição (a `json_request`)
