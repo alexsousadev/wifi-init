@@ -5,7 +5,7 @@ Neste projeto, você aprenderá a configurar o Wi-Fi no Raspberry Pi Pico W e co
 
 ## Sumário
 - [1) 🔧 Reunindo o Setup Inicial](#1-reunindo-o-setup-inicial)
-    - 1.1 [Pegando o arquivo `lwipopts.h`](#11-pegando-o-arquivo-lwipopts-h)
+    - 1.1 [Pegando o arquivo `lwipopts.h`](#11-pegando-o-arquivo-lwipopts)
    - 1.2 [Obtendo o IP da máquina](#12-pegando-o-ip-da-máquina)  
    - 1.3 [Obtendo informações do Wi-Fi](#13-pegando-informações-do-wi-fi) 
    - 1.4 [Configurando o CMakeLists](#14-configurando-o-cmakelists)  
@@ -21,8 +21,8 @@ Neste projeto, você aprenderá a configurar o Wi-Fi no Raspberry Pi Pico W e co
 
 ## 1) Reunindo o Setup Inicial
 
-### 1.1 Pegando o arquivo lwipopts.h
-Primeiro, precisamos colocar na raiz do nosso projeto o arquivo `lwipopts.h`.
+### 1.1 Pegando o arquivo lwipopts
+Primeiro, precisamos colocar na raiz do nosso projeto o arquivo `lwipopts.h`. Pegue [aqui](https://github.com/alexsousadev/wifi-init/blob/main/lwipopts.h)
 
 > Este arquivo contém as configurações padrão do lwIP (Lightweight IP), que é uma pilha de protocolos TCP/IP de código aberto, projetada especificamente para sistemas embarcados. Veja mais [aqui](https://www.nongnu.org/lwip/2_1_x/group__tcp__raw.html)
 
