@@ -1,6 +1,6 @@
 # Mexendo com Wi-Fi no Raspberry Pi Pico W
 
-Neste projeto, você aprenderá a configurar o Wi-Fi no Raspberry Pi Pico W e como enviar dados para um servidor local. Claro, você pode também enviar para um remoto com alguns ajustes, mas isso fica com você.
+Neste projeto, você vai aprender como configurar a conexão Wi-Fi no Raspberry Pi Pico W e enviar dados para um servidor local. O objetivo é simples: fazer a placa enviar um contagem em tempo real para o servidor. Com alguns ajustes, você também pode adaptar o projeto para enviar os dados para um servidor remoto — mas essa parte deixo por sua conta!
 
 
 ## Sumário
@@ -20,7 +20,7 @@ Neste projeto, você aprenderá a configurar o Wi-Fi no Raspberry Pi Pico W e co
     - 4.3 [Enviando os dados](#43-enviando-os-dados)
  
 # Fazendo clone
-Caso queira apenas um setup inicial, faça o clone desse repositório:
+Caso queira apenas um setup inicial, faça o clone:
 ```bash
 git clone https://github.com/alexsousadev/wifi-init
 ```

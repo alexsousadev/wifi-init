@@ -1,6 +1,6 @@
 #include "send-data.h"
 
-#define SERVER_IP "192.x.x.x"  // Troque pro seu ip
+#define SERVER_IP "192.x.x.x"  // Troque por seu ip
 #define SERVER_PORT 3000       // Troque por sua porta
 #define SERVER_PATH "/receber" // Troque por sua rota
 
