@@ -1,8 +1,16 @@
 #include "send-data.h"
 
-#define SERVER_IP "192.x.x.x"  // Troque por seu ip
-#define SERVER_PORT 3000       // Troque por sua porta
-#define SERVER_PATH "/receber" // Troque por sua rota
+#define SERVER_IP "192.168.0.107" // Troque por seu ip
+#define SERVER_PORT 3000          // Troque por sua porta
+#define SERVER_PATH "/receber"    // Troque por sua rota
+
+// Callback para quando os dados são enviados
+static err_t sent_callback(void *arg, struct tcp_pcb *pcb, u16_t len)
+{
+    printf("Dados enviados com sucesso!\n");
+    tcp_close(pcb); // Fecha a conexão TCP
+    return ERR_OK;
+}
 
 // Envia dados para o servidor
 void send_data_to_server(const char *path, char *request_body, const char *type_method)
@@ -37,6 +45,9 @@ void send_data_to_server(const char *path, char *request_body, const char *type_
              "\r\n"
              "%s",
              type_method, path, SERVER_IP, strlen(request_body), request_body);
+
+    // Definindo o callback para quando os dados forem enviados com sucesso
+    tcp_sent(pcb, sent_callback);
 
     // Empacotando a requisição
     if (tcp_write(pcb, request, strlen(request), TCP_WRITE_FLAG_COPY) != ERR_OK)

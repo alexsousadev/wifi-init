@@ -255,13 +255,37 @@ Agora que temos o ip legível, podemos estabelecer a conexão TCP. Para resumir,
     >Outros valores de erro (`err_t`) podem ser retornados caso a solicitação de conexão não possa ser enviada, como erros relacionados à pilha TCP/IP ou ao estado do PCB. Veja mais [aqui](https://www.nongnu.org/lwip/2_1_x/group__tcp__raw.html#ga9a31deea4cadacd39f9485f37cfdd012)
 ---
 ### 4.2) Empacotando os dados 
-Agora que já estabelecemos a conexão TCP, vamos empacotar os dados que queremos enviar. Para isso, usamos a função `tcp_write()`.
+
+
+
+
+
+Agora que já estabelecemos a conexão TCP, vamos empacotar os dados que queremos enviar. Para isso, usamos `tcp_write()`. Mas antes, precisamos criar uma função que será executada quando os dados forem enviados com sucesso. Para isso, vamos usar a função `tcp_sent()`.
+
+```c
+tcp_sent(pcb, sent_callback);
+```
+
+A nossA funçao `sent_callback` será executada quando os dados forem enviados com sucesso. Ela irá printar uma mensagem que os dados foram enviados com sucesso e fechará a conexão TCP:
+```c
+static err_t sent_callback(void *arg, struct tcp_pcb *pcb, u16_t len)
+{
+    printf("Dados enviados com sucesso!\n");
+    tcp_close(pcb); // Fecha a conexão TCP
+    return ERR_OK;
+}
+```
+> A função `tcp_close(pcb)` serve pra fechar uma conexão TCP que foi usada e liberar os recursos (memória, buffers, ponteiros etc) que estavam sendo usados naquela conexão. Isso evita **vazamento de memória**, que pode travar o sistema. Veja mais [aqui](https://www.datacamp.com/pt/blog/memory-leak)
+---
+Agora que já temos a função callback que vai lidar com os dados quando forem enviados, podemos começar a empacotar eles:
+
 ```c
 if (tcp_write(pcb, request, strlen(request), TCP_WRITE_FLAG_COPY) != ERR_OK)
 ```
+- `pcb`: O objeto de conexão TCP  
 - `request`: O que queremos enviar (requisição HTTP formatada).
 - `strlen(request)`: o tamanho da mensagem
-- `TCP_WRITE_FLAG_COPY`: Diz que o TCP deve copiar os dados, não só apontar para eles.
+- `TCP_WRITE_FLAG_COPY`: Diz que o TCP deve copiar os dados, não só apontar para eles. 
 
 ### 4.3) Enviando os dados
 
@@ -278,13 +302,21 @@ Depois de empacotar, vamos enviar de fato com `tcp_output()`:
 ---
 ### Trecho de Código completo
 ```c
-#define SERVER_IP "192.x.x.x"    // Troque pro seu ip 
-#define SERVER_PORT 3000        // Troque por sua porta
+#define SERVER_IP "192.x.x.x"  // Troque por seu ip
+#define SERVER_PORT 3000       // Troque por sua porta
 #define SERVER_PATH "/receber" // Troque por sua rota
+
+// Callback para quando os dados são enviados
+static err_t sent_callback(void *arg, struct tcp_pcb *pcb, u16_t len)
+{
+    printf("Dados enviados com sucesso!\n");
+    tcp_close(pcb); // Fecha a conexão TCP
+    return ERR_OK;
+}
 
 // Envia dados para o servidor
 void send_data_to_server(const char *path, char *request_body, const char *type_method)
-{   
+{
     // Criando PCB
     struct tcp_pcb *pcb = tcp_new();
     if (!pcb)
@@ -315,6 +347,9 @@ void send_data_to_server(const char *path, char *request_body, const char *type_
              "\r\n"
              "%s",
              type_method, path, SERVER_IP, strlen(request_body), request_body);
+
+    // Definindo o callback para quando os dados forem enviados com sucesso
+    tcp_sent(pcb, sent_callback);
 
     // Empacotando a requisição
     if (tcp_write(pcb, request, strlen(request), TCP_WRITE_FLAG_COPY) != ERR_OK)
@@ -374,4 +409,4 @@ int main()
 }
 ```
 # Conclusão
-Espero que esse tutorial tenha sido útil para você aprender a configurar o Wi-Fi no Raspberry Pi Pico W e como enviar dados para um servidor. Fique livre para fazer suas própiras melhorias, como práticas melhores (organização com structs, mais modularidade etc) e comentários mais explicativos.
+Espero que esse tutorial tenha sido útil para você aprender a configurar o Wi-Fi no Raspberry Pi Pico W e como enviar dados para um servidor. Fique livre para fazer suas própiras melhorias, como organização com structs, mais modularidade etc.
