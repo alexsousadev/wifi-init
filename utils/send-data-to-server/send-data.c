@@ -1,8 +1,8 @@
 #include "send-data.h"
 
-#define SERVER_IP "192.168.0.107" // Troque por seu ip
-#define SERVER_PORT 3000          // Troque por sua porta
-#define SERVER_PATH "/receber"    // Troque por sua rota
+#define SERVER_IP "192.x.x.x"  // Troque por seu ip
+#define SERVER_PORT 3000       // Troque por sua porta
+#define SERVER_PATH "/receber" // Troque por sua rota
 
 // Callback para quando os dados são enviados
 static err_t sent_callback(void *arg, struct tcp_pcb *pcb, u16_t len)

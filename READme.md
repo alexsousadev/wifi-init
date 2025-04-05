@@ -2,6 +2,12 @@
 
 Neste projeto, você vai aprender como configurar a conexão Wi-Fi no Raspberry Pi Pico W e enviar dados para um servidor local. O objetivo é simples: fazer a placa enviar um contagem em tempo real para o servidor. Com alguns ajustes, você também pode adaptar o projeto para enviar os dados para um servidor remoto — mas essa parte deixo por sua conta!
 
+## Tecnologias Utilizadas
+- **Hardware**: Raspberry Pi Pico W
+- **Software**:
+    - [Pico C/C++ SDK](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads/13-2-rel1)
+    - CMake + [GCC](https://jmeubank.github.io/tdm-gcc/)
+    - [Node.js](https://nodejs.org/en) + [Express](https://expressjs.com/pt-br/) (Servidor)
 
 ## Sumário
 - [1) 🔧 Reunindo o Setup Inicial](#1-reunindo-o-setup-inicial)
@@ -64,7 +70,7 @@ A Lib cyw43 tem outros modos que você pode ver [aqui](https://www.raspberrypi.c
 
 
 ## 2) Configurando nosso servidor
-Precisamos criar nosso servidor local para receber os envios de dados. Nesse caso, usarei o [Express](https://expressjs.com/) com Typescript, que é um framework Node.js. Mas você pode usar qualquer outro, **a importância aqui é criar a rota para receber os dados.**
+Precisamos criar nosso servidor local para receber os envios de dados. Nesse caso, usarei o [Express](https://expressjs.com/) com Typescript, que é um framework [Node.js](https://nodejs.org/en). Mas você pode usar qualquer outro, **a importância aqui é criar a rota para receber os dados.**
 
 ```ts
 import express, { Request, Response } from 'express';
@@ -92,6 +98,16 @@ Detalhes do que está acontecendo:
         "dado": <valor>
     }
     ```
+### Ligando o Servidor
+
+Para ligar o servidor, basta instalar as dependências (entre na raiz do server primeiro, na pasta `📁server`) com o comando:
+```bash
+npm i
+```
+E então, iniciar o servidor:
+```
+npm run start
+```
 
 ## 3) Configurando a conexão Wi-Fi no Pico W
 Agora sim podemos começar de fato a mexer no código do Raspberry Pi Pico W. Primeiro, precisamos importar as bibliotecas necessárias:
