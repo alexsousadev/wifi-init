@@ -153,7 +153,7 @@ void init_wifi()
 - `cyw43_arch_wifi_connect_timeout_ms(WIFI_SSID, WIFI_PASSWORD, CYW43_AUTH_WPA2_AES_PSK, 10000)`: Tenta se conectar à rede Wi-Fi com:
     - `WIFI_SSID`: Nome da rede Wi-Fi
     - `WIFI_PASSWORD`: Senha da rede Wi-Fi
-    - `CYW43_AUTH_WPA2_AES_PSK`: Método de autenticação (WPA2-PSK = Protected Wi-Fi). Pode ver mais sobre isso [aqui]("https://tecnoblog.net/responde/o-que-e-wep-wpa-wpa2-wpa3-diferencas-protocolo-seguranca-wi-fi/")
+    - `CYW43_AUTH_WPA2_AES_PSK`: Método de autenticação (WPA2-PSK = Protected Wi-Fi). Pode ver mais sobre isso [aqui](https://tecnoblog.net/responde/o-que-e-wep-wpa-wpa2-wpa3-diferencas-protocolo-seguranca-wi-fi/)
     - `10000`: Tempo de timeout (Basicamente, vai tentar conectar ao Wi-Fi por 10 segundos, se não der certo, avisa que falhou)”
     > O while serve para ficar em loop enquanto a conexão não for estabelecida.
 ---
