@@ -15,7 +15,7 @@ Caso queira apenas um setup inicial, faça o clone deste repositório.
 
  Para não precisar fazer o download de arquivos desnecessários, você pode utilizar o site  [Download GitHub directory](https://download-directory.github.io) e colocar o link abaixo para baixar apenas a pasta onde estão os arquivos em questão:
 ```bash
-https://github.com/alexsousadev/wifi-init/tree/main/src/wifi-test
+https://github.com/alexsousadev/wifi-init/tree/main/src
 ```
 # Explicação
 - ### [1) Preparação do Ambiente](./tutorial/1-setup-inicial/setup-inicial.md)
